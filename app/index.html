@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="UTF-8">
+ <title>Музыканты оркестра</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/handlebars.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+    <h1 class="text-center">Музыканты оркестра</h1>
+    <div class="col-md-12 col-lg-12">
+    <div class="col=md-5 col-lg-5 orchestra">
+
+        <form class="basic">
+    <h4>Создать оркестр</h4>
+  <div class="form-group">
+      <label>Вид</label>
+    <input  class="form-control" id="typeO" placeholder="Симфонический">
+  </div>
+  <div class="error errorOrchestra">
+    Неверный ввод. Пожалуйста, заполните все поля.
+  </div>
+            <input  type="button" class="btn btn-success" id="new_orchestra" value="Создать">
+</form>
+     </div>
+
+      <div class="col=md-5 col-lg-5 instrument">
+    <form class="basic">
+    <h4>Создать инструмент</h4>
+  <div class="form-group">
+   <label>Название</label>
+    <input class="form-control" id="nameI" placeholder="Саксофон">
+  </div>
+        <div class="error errorInstrument">
+            Неверный ввод. Пожалуйста, заполните все поля.
+        </div>
+        <input  type="button" class="btn btn-success" id="new_instrument" value="Создать">
+</form>
+     </div>
+
+     <div class="container col-md-12 col-lg-12 musician">
+     	<form class="form-inline">
+     	<h4>Создать музыканта</h4>
+     	<div class="form-group">
+            <label>Оркестр</label>
+            <select class="orchestradrop form-control" >
+            </select>
+		</div>
+            <div class="form-group">
+                <label>Инструмент</label>
+                <select class="instrumentdrop form-control" >
+                </select>
+            </div>
+  <div class="form-group">
+    <label>Имя</label>
+    <input type="text" class="form-control" id="nameMus" placeholder="Jane Doe">
+  </div>
+  <div class="form-group">
+    <label>Опыт</label>
+    <input type="text" class="form-control" id="experienceMus" placeholder="3">
+  </div>
+  <input  type="button" class="btn btn-success" id="new_musician" value="Создать">
+            <div class="error errorMusician">
+                Неверный ввод. Пожалуйста, заполните все поля.
+            </div>
+</form>
+         <h2 class="text-center">Список музыкантов</h2>
+<div class="col-md-12 col-lg-12 musicianlist item">
+
+</div>
+
+<script id="templateOrchestra" type="text/x-handlebars-template">
+					{{#each this}}
+    <option value="{{id}}">
+      			  {{type}}
+  	</option>
+						{{/each}}
+          </script>
+          <script id="templateInstrument" type="text/x-handlebars-template">
+					{{#each this}}
+              <option value="{{id}}">
+                  {{name}}
+              </option>
+						{{/each}}
+      </script>
+      <script id="templateMusician" type="text/x-handlebars-template">
+  {{#each this  }}
+    <div id="{{id}}" class="list">
+      <div class="row">
+
+         <p><div class="inf col-md-3 col-lg-3"><b>Оркестр:</b>{{orchestra.type}}</div>
+          <div class="inf col-md-3 col-lg-3"><b>Инструмент:</b>{{instrument.name}}</div>
+             <div class="inf col-md-3 col-lg-3"><b>Имя:</b>{{name}}</div>
+                <div class="inf col-md-2 col-lg-2"><b>Опыт:</b>{{experience}}</div>
+             <button type="button" class="btn btn-default btn-md delete_musician" id="{{id}}">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+             </button>
+         <button type="button" class="btn btn-default btn-md change_musician" id="{{id}}">
+  			<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		</button>
+         </p>
+      </div>
+    </div>
+  {{/each}}
+</script>
+        <script id="templateChange" type="text/x-handlebars-template">
+            <div class="well " id="{{id}}">
+                <form class="form-inline changeMus">
+             <h4>Изменить музыканта</h4>
+             <div class="form-group">
+                 <label>Оркестр</label>
+                 <select class="orchestradrop form-control" id="change_orchestra">
+                     {{#each this}}
+                     <option value="{{id}}">
+                         {{type}}
+                     </option>
+                     {{/each}}
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Инструмент</label>
+                 <select class="instrumentdrop form-control" id="change_instrument">
+                     {{#each this}}
+                     <option value="{{id}}">
+                         {{name}}
+                     </option>
+                     {{/each}}
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Имя</label>
+                 <input type="text" class="form-control" id="change_name" value="{{name}}">
+             </div>
+             <div class="form-group">
+                 <label>Опыт</label>
+                 <input type="text" class="form-control" id="change_experience" value="{{experience}}">
+             </div>
+             <input  type="button" class="btn btn-success saveChanges" id="{{id}}" value="Изменить">
+         </form>
+                </div>
+         </script>
+     </div>
+    </div> 
+     
+    </div>
+</body>
+<script type="text/javascript" src='js/bundle.js'></script>
+</html>

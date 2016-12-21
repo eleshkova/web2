@@ -1,0 +1,24 @@
+form, .item{
+	border: 1px solid #C0C0C0;
+	}
+.basic{
+	padding: 40px;
+	margin: 20px 40px;
+}
+.form-inline{
+	padding: 20px;
+}
+.error{
+	color: red;
+}
+.btn-default{
+	float: right;
+}
+.list{
+	border-bottom:1px solid #C0C0C0 ;
+}
+.inf{
+	font-size: 20px;
+	font-family: Verdana;
+	padding-left: 20px;
+}
